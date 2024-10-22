@@ -13,3 +13,4 @@ C:\Users\dravasi\Documents\dotnet-first-demo\Reactivities\Persistence\obj\Debug\
 C:\Users\dravasi\Documents\dotnet-first-demo\Reactivities\Persistence\obj\Debug\net8.0\refint\Persistence.dll
 C:\Users\dravasi\Documents\dotnet-first-demo\Reactivities\Persistence\obj\Debug\net8.0\Persistence.pdb
 C:\Users\dravasi\Documents\dotnet-first-demo\Reactivities\Persistence\obj\Debug\net8.0\ref\Persistence.dll
+C:\Users\dravasi\Documents\dotnet-first-demo\Reactivities\Persistence\obj\Debug\net8.0\Persistence.sourcelink.json

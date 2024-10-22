@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
 {
-    public class DataContext : DbContext
+    public class DataContext : DbContext // represents a session with the database and can be used to query and save instances of your entities.
     {
         // Constructor
         public DataContext(DbContextOptions options) : base(options)
