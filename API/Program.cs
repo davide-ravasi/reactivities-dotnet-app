@@ -42,4 +42,45 @@ to define their routes.
 */
 app.MapControllers();
 
+// Create a new scope for dependency injection
+// this is a way to manage the lifetime of the services
+// using means that the scope will be disposed of after the block of code is executed
+// and clean up for memory
+using var scope = app.Services.CreateScope();
+var services = scope.ServiceProvider;
+
+try
+{
+    // Retrieve the DataContext service
+    var context = services.GetRequiredService<DataContext>();
+
+    // Apply any pending migrations to the database
+    await context.Database.MigrateAsync();
+
+
+    // Seed the database with data
+    await Seed.SeedData(context);
+}
+catch (Exception ex)
+{
+    // Retrieve the logger service
+    var logger = services.GetRequiredService<ILogger<Program>>();
+
+    // Log the error that occurred during migration
+    logger.LogError(ex, "An error occurred during migration");
+}
+
 app.Run();
+
+
+/*
+- to see the database:
+  command palette -> sqlite: open database
+  then select the database file
+
+
+- use dotnet watch --no-hot-reload run to run the application in watch mode
+  because hot reload doesn't work well with EF migrations and
+  even if there are changes in the code, sometimes it doesn't reflect in the browser
+
+*/
