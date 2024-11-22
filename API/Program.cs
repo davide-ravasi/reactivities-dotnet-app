@@ -10,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(opt =>
 {
-    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+  opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 var app = builder.Build();
@@ -22,8 +22,8 @@ var app = builder.Build();
 // the order is important
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+  app.UseSwagger();
+  app.UseSwaggerUI();
 }
 
 // app.UseHttpsRedirection();
@@ -51,26 +51,30 @@ var services = scope.ServiceProvider;
 
 try
 {
-    // Retrieve the DataContext service
-    var context = services.GetRequiredService<DataContext>();
+  // Retrieve the DataContext service
+  var context = services.GetRequiredService<DataContext>();
 
-    // Apply any pending migrations to the database
-    await context.Database.MigrateAsync();
+  // Apply any pending migrations to the database
+  await context.Database.MigrateAsync();
 
 
-    // Seed the database with data
-    await Seed.SeedData(context);
+  // Seed the database with data
+  await Seed.SeedData(context);
 }
 catch (Exception ex)
 {
-    // Retrieve the logger service
-    var logger = services.GetRequiredService<ILogger<Program>>();
+  // Retrieve the logger service
+  var logger = services.GetRequiredService<ILogger<Program>>();
 
-    // Log the error that occurred during migration
-    logger.LogError(ex, "An error occurred during migration");
+  // Log the error that occurred during migration
+  logger.LogError(ex, "An error occurred during migration");
 }
 
+
+
 app.Run();
+
+
 
 
 /*
