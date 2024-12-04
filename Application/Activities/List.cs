@@ -45,7 +45,7 @@ namespace Application.Activities
 }
 
 /*
-How It All Fits Together
+How It All Fits Together ------------------
 --A client (e.g., a web request) sends a Query object asking for the list of activities.
 
 --MediatR routes this query to the Handler class.
@@ -53,4 +53,10 @@ How It All Fits Together
 --The Handler:
 -----Uses the DataContext to query the database.
 -----Returns the list of activities to the client.
+
+Comparison to React ------------------
+DataContext: Similar to a global state manager or a service that provides data to your components.
+Constructor: Similar to passing props or using context to provide dependencies to your components.
+Handle Method: Similar to making an API call to fetch data and then updating the state with the fetched data.
+MediatR: Similar to middleware that intercepts actions and routes them to the appropriate handlers.
 */
