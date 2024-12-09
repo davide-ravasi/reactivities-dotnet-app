@@ -1,32 +1,21 @@
 using Application.Activities;
 using Domain;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     public class ActivitiesController : BaseApiController
     {
-        private readonly IMediator _mediator;
-        // DataContext will be injected into the constructor
-        // This is called dependency injection
-        //  when an http request commes in, the controller will be created and the DataContext will be injected into it
-        public ActivitiesController(IMediator mediator)
-        {
-            _mediator = mediator;
-
-        }
-
         [HttpGet] //endpoint api/activities and it will return a list of activities
         public async Task<ActionResult<List<Activity>>> GetActivities()
         {
-            return await _mediator.Send(new List.Query());
+            return await Mediator.Send(new List.Query());
         }
 
         [HttpGet("{id}")] //endpoint api/activities/id and it will return a single activity
         public async Task<ActionResult<Activity>> GetActivity(Guid id)
         {
-            return await _context.Activities.FindAsync(id);
+            return await Mediator.Send(new Details.Query { Id = id });
         }
     }
 }
