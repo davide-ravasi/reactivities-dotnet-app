@@ -1,6 +1,5 @@
 using Domain;
 using MediatR;
-using System;
 using Persistence;
 
 namespace Application.Activities
@@ -9,6 +8,9 @@ namespace Application.Activities
     {
         public class Query : IRequest<Activity>
         {
+            // The Id property is a Guid that represents the unique identifier of the activity
+            // is the input for the query
+            // is the data passed to the query
             public Guid Id { get; set; }
         }
 
