@@ -1,4 +1,5 @@
 using Application.Activities;
+using Application.Core;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<DataContext>(opt =>
 {
   opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 builder.Services.AddCors(opt =>
 {
   opt.AddPolicy("CorsPolicy", policy =>

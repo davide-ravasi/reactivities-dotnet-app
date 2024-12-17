@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "hNR6c1JwereZjcb3XVpGpCQMgpMU7OHfRs1U0WnwNOISd8U+UNMLWeGXmmcESjWopk1oG4wDOTrnOUGWQWz0/w==",
+  "dgSpecHash": "bTYrBizMysUA5g2nRWsZmt3OWRO9KQOONYMKSE/IdGG4/lmVcAQLo6pB/BoZH3VLOeic/KWI/JSr4JysusUgYg==",
   "success": true,
   "projectFilePath": "C:\\Users\\dravasi\\Documents\\dotnet-first-demo\\Reactivities\\Application\\Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\dravasi\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\dravasi\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\dravasi\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
     "C:\\Users\\dravasi\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\dravasi\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\dravasi\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.10\\microsoft.data.sqlite.core.8.0.10.nupkg.sha512",
     "C:\\Users\\dravasi\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.10\\microsoft.entityframeworkcore.8.0.10.nupkg.sha512",
     "C:\\Users\\dravasi\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.10\\microsoft.entityframeworkcore.abstractions.8.0.10.nupkg.sha512",

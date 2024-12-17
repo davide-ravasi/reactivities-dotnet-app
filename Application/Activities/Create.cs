@@ -27,7 +27,7 @@ namespace Application.Activities
                 // so no need to be async
                 _context.Activities.Add(request.Activity);
 
-                // save changes will return the number of changes 
+                // save changes will return the number of changes  
                 // that have been saved to the database
                 await _context.SaveChangesAsync();
             }
