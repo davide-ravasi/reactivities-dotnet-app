@@ -14,6 +14,8 @@ builder.Services.AddDbContext<DataContext>(opt =>
 {
   opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+// load all the mapping profiles to the automapper
+// so that it can be used in the application
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 builder.Services.AddCors(opt =>
 {
