@@ -3,9 +3,15 @@ import { Activity } from "../../../app/models/activity";
 
 interface IActivityDetailsProps {
   activity: Activity;
+  setEditMode: (editMode: boolean) => void;
+  handleCancelSelectActivity: () => void;
 }
 
-export default function ActivityDetails({ activity }: IActivityDetailsProps) {
+export default function ActivityDetails({
+  activity,
+  setEditMode,
+  handleCancelSelectActivity,
+}: IActivityDetailsProps) {
   return (
     <Card fluid>
       <Image src={`/assets/categoryImages/${activity.category}.jpg`} />
@@ -21,8 +27,18 @@ export default function ActivityDetails({ activity }: IActivityDetailsProps) {
       </Card.Content>
       <Card.Content extra>
         <Button.Group widths="2">
-          <Button basic color="blue" content="Edit" />
-          <Button basic color="grey" content="Cancel" />
+          <Button
+            basic
+            color="blue"
+            content="Edit"
+            onClick={() => setEditMode(true)}
+          />
+          <Button
+            basic
+            color="grey"
+            content="Cancel"
+            onClick={() => handleCancelSelectActivity()}
+          />
         </Button.Group>
       </Card.Content>
     </Card>

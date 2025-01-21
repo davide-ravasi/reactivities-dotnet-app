@@ -1,6 +1,10 @@
 import { Button, Form, Segment } from "semantic-ui-react";
 
-export default function ActivityForm() {
+interface IActivityFormProps {
+  setEditMode: (editMode: boolean) => void;
+}
+
+export default function ActivityForm({ setEditMode }: IActivityFormProps) {
   return (
     <Segment clearing>
       <Form>
@@ -11,7 +15,12 @@ export default function ActivityForm() {
         <Form.Input placeholder="City" />
         <Form.Input placeholder="Venue" />
         <Button floated="right" positive type="submit" content="Submit" />
-        <Button floated="right" type="button" content="Cancel" />
+        <Button
+          floated="right"
+          type="button"
+          content="Cancel"
+          onClick={() => setEditMode(false)}
+        />
       </Form>
     </Segment>
   );

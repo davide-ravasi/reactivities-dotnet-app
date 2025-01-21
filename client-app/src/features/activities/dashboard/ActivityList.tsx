@@ -31,6 +31,7 @@ export default function ActivityList({
                   floated="right"
                   onClick={() => handleSelectedActivity(activity.id)}
                 />
+                <Button content="Delete" color="red" floated="right" />
                 <Label basic content={activity.category} />
               </Item.Extra>
             </Item.Content>

@@ -2,21 +2,29 @@ import { Grid } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
 import ActivityList from "./ActivityList";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import ActivityDetails from "../details/ActivityDetails";
 import ActivityForm from "../form/ActivityForm";
 
-export default function ActivityDashboard() {
-  const [activities, setActivities] = useState<Activity[]>([]);
-  const [selectedActivity, setSelectedActivity] = useState<
-    Activity | undefined
-  >();
+interface IActivityDashboardProps {
+  activities: Activity[];
+  selectedActivity: Activity | undefined;
+  editMode: boolean;
+  setEditMode: (editMode: boolean) => void;
+  setActivities: (activities: Activity[]) => void;
+  handleSelectedActivity: (id: string) => void;
+  handleCancelSelectActivity: () => void;
+}
 
-  function handleSelectedActivity(id: string) {
-    const activity = activities.find((x) => x.id === id);
-    setSelectedActivity(activity);
-  }
-
+export default function ActivityDashboard({
+  activities,
+  selectedActivity,
+  editMode,
+  setEditMode,
+  setActivities,
+  handleSelectedActivity,
+  handleCancelSelectActivity,
+}: IActivityDashboardProps) {
   useEffect(() => {
     axios
       .get<Activity[]>("http://localhost:5000/api/activities")
@@ -24,7 +32,7 @@ export default function ActivityDashboard() {
         console.log(response);
         setActivities(response.data);
       });
-  }, []);
+  }, [setActivities]);
   return (
     <Grid>
       <Grid.Column width="10">
@@ -34,8 +42,14 @@ export default function ActivityDashboard() {
         />
       </Grid.Column>
       <Grid.Column width="6">
-        {selectedActivity && <ActivityDetails activity={selectedActivity} />}
-        <ActivityForm />
+        {selectedActivity && !editMode && (
+          <ActivityDetails
+            activity={selectedActivity}
+            handleCancelSelectActivity={handleCancelSelectActivity}
+            setEditMode={setEditMode}
+          />
+        )}
+        {editMode && <ActivityForm setEditMode={setEditMode} />}
       </Grid.Column>
     </Grid>
   );
