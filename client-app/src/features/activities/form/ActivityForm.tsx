@@ -1,10 +1,10 @@
 import { Button, Form, Segment } from "semantic-ui-react";
 
 interface IActivityFormProps {
-  setEditMode: (editMode: boolean) => void;
+  handleFormClose: () => void;
 }
 
-export default function ActivityForm({ setEditMode }: IActivityFormProps) {
+export default function ActivityForm({ handleFormClose }: IActivityFormProps) {
   return (
     <Segment clearing>
       <Form>
@@ -19,7 +19,7 @@ export default function ActivityForm({ setEditMode }: IActivityFormProps) {
           floated="right"
           type="button"
           content="Cancel"
-          onClick={() => setEditMode(false)}
+          onClick={() => handleFormClose()}
         />
       </Form>
     </Segment>

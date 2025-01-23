@@ -14,17 +14,24 @@ function App() {
   function handleSelectedActivity(id: string) {
     const activity = activities.find((x) => x.id === id);
     setSelectedActivity(activity);
-    setEditMode(false);
   }
 
   function handleCancelSelectActivity() {
     setSelectedActivity(undefined);
+  }
+
+  function handleFormOpen(id?: string) {
+    id ? handleSelectedActivity(id) : handleCancelSelectActivity();
+    setEditMode(true);
+  }
+
+  function handleFormClose() {
     setEditMode(false);
   }
 
   return (
     <>
-      <NavBar />
+      <NavBar handleFormOpen={handleFormOpen} />
       <Container style={{ marginTop: "7em" }}>
         <ActivityDashboard
           activities={activities}
@@ -32,6 +39,8 @@ function App() {
           editMode={editMode}
           setEditMode={setEditMode}
           setActivities={setActivities}
+          handleFormOpen={handleFormOpen}
+          handleFormClose={handleFormClose}
           handleSelectedActivity={handleSelectedActivity}
           handleCancelSelectActivity={handleCancelSelectActivity}
         />

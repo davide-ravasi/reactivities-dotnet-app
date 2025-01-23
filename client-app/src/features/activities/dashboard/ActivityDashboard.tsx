@@ -12,6 +12,8 @@ interface IActivityDashboardProps {
   editMode: boolean;
   setEditMode: (editMode: boolean) => void;
   setActivities: (activities: Activity[]) => void;
+  handleFormOpen: (id?: string) => void;
+  handleFormClose: () => void;
   handleSelectedActivity: (id: string) => void;
   handleCancelSelectActivity: () => void;
 }
@@ -20,8 +22,9 @@ export default function ActivityDashboard({
   activities,
   selectedActivity,
   editMode,
-  setEditMode,
   setActivities,
+  handleFormOpen,
+  handleFormClose,
   handleSelectedActivity,
   handleCancelSelectActivity,
 }: IActivityDashboardProps) {
@@ -46,10 +49,10 @@ export default function ActivityDashboard({
           <ActivityDetails
             activity={selectedActivity}
             handleCancelSelectActivity={handleCancelSelectActivity}
-            setEditMode={setEditMode}
+            handleFormOpen={handleFormOpen}
           />
         )}
-        {editMode && <ActivityForm setEditMode={setEditMode} />}
+        {editMode && <ActivityForm handleFormClose={handleFormClose} />}
       </Grid.Column>
     </Grid>
   );

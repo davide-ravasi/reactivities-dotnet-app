@@ -3,13 +3,13 @@ import { Activity } from "../../../app/models/activity";
 
 interface IActivityDetailsProps {
   activity: Activity;
-  setEditMode: (editMode: boolean) => void;
+  handleFormOpen: (id: string) => void;
   handleCancelSelectActivity: () => void;
 }
 
 export default function ActivityDetails({
   activity,
-  setEditMode,
+  handleFormOpen,
   handleCancelSelectActivity,
 }: IActivityDetailsProps) {
   return (
@@ -31,7 +31,7 @@ export default function ActivityDetails({
             basic
             color="blue"
             content="Edit"
-            onClick={() => setEditMode(true)}
+            onClick={() => handleFormOpen(activity.id)}
           />
           <Button
             basic
