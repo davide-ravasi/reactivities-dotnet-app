@@ -52,7 +52,12 @@ export default function ActivityDashboard({
             handleFormOpen={handleFormOpen}
           />
         )}
-        {editMode && <ActivityForm handleFormClose={handleFormClose} />}
+        {editMode && (
+          <ActivityForm
+            selectedActivity={selectedActivity}
+            handleFormClose={handleFormClose}
+          />
+        )}
       </Grid.Column>
     </Grid>
   );
