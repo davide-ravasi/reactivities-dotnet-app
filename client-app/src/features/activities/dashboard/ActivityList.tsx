@@ -4,11 +4,13 @@ import { Activity } from "../../../app/models/activity";
 interface IActivityListProps {
   activities: Activity[];
   handleSelectedActivity: (id: string) => void;
+  handleDeleteActivity: (id: string) => void;
 }
 
 export default function ActivityList({
   activities,
   handleSelectedActivity,
+  handleDeleteActivity,
 }: IActivityListProps) {
   return (
     <Segment>
@@ -31,7 +33,12 @@ export default function ActivityList({
                   floated="right"
                   onClick={() => handleSelectedActivity(activity.id)}
                 />
-                <Button content="Delete" color="red" floated="right" />
+                <Button
+                  content="Delete"
+                  color="red"
+                  floated="right"
+                  onClick={() => handleDeleteActivity(activity.id)}
+                />
                 <Label basic content={activity.category} />
               </Item.Extra>
             </Item.Content>

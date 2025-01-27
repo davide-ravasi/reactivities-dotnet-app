@@ -51,6 +51,10 @@ function App() {
     }
   }
 
+  function handleDeleteActivity(id: string) {
+    setActivities([...activities.filter((activity) => activity.id != id)]);
+  }
+
   return (
     <>
       <NavBar handleFormOpen={handleFormOpen} />
@@ -66,6 +70,7 @@ function App() {
           handleSelectedActivity={handleSelectedActivity}
           handleCancelSelectActivity={handleCancelSelectActivity}
           handleCreateOrEditActivity={handleCreateOrEditActivity}
+          handleDeleteActivity={handleDeleteActivity}
         />
       </Container>
     </>

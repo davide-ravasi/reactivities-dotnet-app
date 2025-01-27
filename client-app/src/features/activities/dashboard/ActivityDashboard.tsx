@@ -17,6 +17,7 @@ interface IActivityDashboardProps {
   handleSelectedActivity: (id: string) => void;
   handleCancelSelectActivity: () => void;
   handleCreateOrEditActivity: (activity: Activity) => void;
+  handleDeleteActivity: (id: string) => void;
 }
 
 export default function ActivityDashboard({
@@ -29,6 +30,7 @@ export default function ActivityDashboard({
   handleSelectedActivity,
   handleCancelSelectActivity,
   handleCreateOrEditActivity,
+  handleDeleteActivity,
 }: IActivityDashboardProps) {
   useEffect(() => {
     axios
@@ -44,6 +46,7 @@ export default function ActivityDashboard({
         <ActivityList
           activities={activities}
           handleSelectedActivity={handleSelectedActivity}
+          handleDeleteActivity={handleDeleteActivity}
         />
       </Grid.Column>
       <Grid.Column width="6">
