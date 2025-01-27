@@ -16,6 +16,7 @@ interface IActivityDashboardProps {
   handleFormClose: () => void;
   handleSelectedActivity: (id: string) => void;
   handleCancelSelectActivity: () => void;
+  handleCreateOrEditActivity: (activity: Activity) => void;
 }
 
 export default function ActivityDashboard({
@@ -27,6 +28,7 @@ export default function ActivityDashboard({
   handleFormClose,
   handleSelectedActivity,
   handleCancelSelectActivity,
+  handleCreateOrEditActivity,
 }: IActivityDashboardProps) {
   useEffect(() => {
     axios
@@ -56,6 +58,7 @@ export default function ActivityDashboard({
           <ActivityForm
             selectedActivity={selectedActivity}
             handleFormClose={handleFormClose}
+            handleCreateOrEditActivity={handleCreateOrEditActivity}
           />
         )}
       </Grid.Column>

@@ -2,6 +2,7 @@ import { Container } from "semantic-ui-react";
 import NavBar from "./NavBar";
 import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
 import { useState } from "react";
+import { v4 as uuid } from "uuid";
 import { Activity } from "../models/activity";
 
 function App() {
@@ -29,6 +30,27 @@ function App() {
     setEditMode(false);
   }
 
+  // handleCreateOrEditActivity function here
+  // check if id exists, if not, then create new activity
+  // create or edit in state for now
+  // close form and open activity details
+  // installing guid package
+  function handleCreateOrEditActivity(activity: Activity) {
+    if (activity.id) {
+      setActivities([...activities, activity]);
+      setSelectedActivity(activity);
+      setEditMode(false);
+    } else {
+      const newActivity = {
+        ...activity,
+        id: uuid(),
+      };
+      setActivities([...activities, newActivity]);
+      setSelectedActivity(activity);
+      setEditMode(false);
+    }
+  }
+
   return (
     <>
       <NavBar handleFormOpen={handleFormOpen} />
@@ -43,6 +65,7 @@ function App() {
           handleFormClose={handleFormClose}
           handleSelectedActivity={handleSelectedActivity}
           handleCancelSelectActivity={handleCancelSelectActivity}
+          handleCreateOrEditActivity={handleCreateOrEditActivity}
         />
       </Container>
     </>
