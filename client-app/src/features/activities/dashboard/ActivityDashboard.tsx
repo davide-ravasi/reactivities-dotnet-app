@@ -5,6 +5,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import ActivityDetails from "../details/ActivityDetails";
 import ActivityForm from "../form/ActivityForm";
+import Agent from "../../../app/api/agent";
 
 interface IActivityDashboardProps {
   activities: Activity[];
@@ -33,12 +34,10 @@ export default function ActivityDashboard({
   handleDeleteActivity,
 }: IActivityDashboardProps) {
   useEffect(() => {
-    axios
-      .get<Activity[]>("http://localhost:5000/api/activities")
-      .then((response) => {
-        console.log(response);
-        setActivities(response.data);
-      });
+    Agent.Activities.list().then((response) => {
+      console.log(response);
+      setActivities(response);
+    });
   }, [setActivities]);
   return (
     <Grid>
