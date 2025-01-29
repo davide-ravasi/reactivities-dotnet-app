@@ -1,7 +1,6 @@
 import { Grid } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
 import ActivityList from "./ActivityList";
-import axios from "axios";
 import { useEffect } from "react";
 import ActivityDetails from "../details/ActivityDetails";
 import ActivityForm from "../form/ActivityForm";
@@ -35,8 +34,12 @@ export default function ActivityDashboard({
 }: IActivityDashboardProps) {
   useEffect(() => {
     Agent.Activities.list().then((response) => {
-      console.log(response);
-      setActivities(response);
+      const activities: Activity[] = [];
+      response.forEach((activity) => {
+        activity.date = activity.date.split("T")[0];
+        activities.push(activity);
+      });
+      setActivities(activities);
     });
   }, [setActivities]);
   return (
