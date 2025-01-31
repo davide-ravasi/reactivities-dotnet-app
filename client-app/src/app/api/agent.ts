@@ -3,6 +3,28 @@ import { Activity } from "../models/activity";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
+//  loading component Dimmer from semantic-ui-react
+// add loader from semantic ui
+// add loading state
+
+const sleep = (delay: number) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("true");
+    }, delay);
+  });
+};
+
+axios.interceptors.response.use(async (response: AxiosResponse) => {
+  try {
+    await sleep(1000);
+    return response;
+  } catch {
+    console.log("error");
+    return await Promise.reject();
+  }
+});
+
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
 const requests = {
