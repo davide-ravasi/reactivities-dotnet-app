@@ -11,6 +11,7 @@ interface IActivityDashboardProps {
   activities: Activity[];
   selectedActivity: Activity | undefined;
   editMode: boolean;
+  submitting: boolean;
   setEditMode: (editMode: boolean) => void;
   setActivities: (activities: Activity[]) => void;
   handleFormOpen: (id?: string) => void;
@@ -25,6 +26,7 @@ export default function ActivityDashboard({
   activities,
   selectedActivity,
   editMode,
+  submitting,
   setActivities,
   handleFormOpen,
   handleFormClose,
@@ -70,6 +72,7 @@ export default function ActivityDashboard({
             {editMode && (
               <ActivityForm
                 selectedActivity={selectedActivity}
+                submitting={submitting}
                 handleFormClose={handleFormClose}
                 handleCreateOrEditActivity={handleCreateOrEditActivity}
               />

@@ -4,12 +4,14 @@ import { useState } from "react";
 
 interface IActivityFormProps {
   selectedActivity: Activity | undefined;
+  submitting: boolean;
   handleFormClose: () => void;
   handleCreateOrEditActivity: (activity: Activity) => void;
 }
 
 export default function ActivityForm({
   selectedActivity,
+  submitting,
   handleFormClose,
   handleCreateOrEditActivity,
 }: IActivityFormProps) {
@@ -74,7 +76,13 @@ export default function ActivityForm({
           name="venue"
           onChange={handleInputChange}
         />
-        <Button floated="right" positive type="submit" content="Submit" />
+        <Button
+          floated="right"
+          positive
+          type="submit"
+          content="Submit"
+          loading={submitting}
+        />
         <Button
           floated="right"
           type="button"

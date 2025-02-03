@@ -1,9 +1,10 @@
 import { Container } from "semantic-ui-react";
 import NavBar from "./NavBar";
-import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import { Activity } from "../models/activity";
+import Agent from "../api/agent";
+import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -11,6 +12,7 @@ function App() {
     Activity | undefined
   >();
   const [editMode, setEditMode] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   function handleSelectedActivity(id: string) {
     const activity = activities.find((x) => x.id === id);
@@ -36,18 +38,28 @@ function App() {
   // close form and open activity details
   // installing guid package
   function handleCreateOrEditActivity(activity: Activity) {
+    setSubmitting(true);
     if (activity.id) {
-      setActivities([...activities, activity]);
-      setSelectedActivity(activity);
-      setEditMode(false);
+      Agent.Activities.update(activity).then(() => {
+        setActivities([
+          ...activities.filter((x) => x.id !== activity.id),
+          activity,
+        ]);
+        setSelectedActivity(activity);
+        setEditMode(false);
+        setSubmitting(false);
+      });
     } else {
       const newActivity = {
         ...activity,
         id: uuid(),
       };
-      setActivities([...activities, newActivity]);
-      setSelectedActivity(activity);
-      setEditMode(false);
+      Agent.Activities.create(newActivity).then(() => {
+        setActivities([...activities, newActivity]);
+        setSelectedActivity(activity);
+        setEditMode(false);
+        setSubmitting(false);
+      });
     }
   }
 
@@ -63,6 +75,7 @@ function App() {
           activities={activities}
           selectedActivity={selectedActivity}
           editMode={editMode}
+          submitting={submitting}
           setEditMode={setEditMode}
           setActivities={setActivities}
           handleFormOpen={handleFormOpen}

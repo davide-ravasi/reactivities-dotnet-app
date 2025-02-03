@@ -3,14 +3,10 @@ import { Activity } from "../models/activity";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
-//  loading component Dimmer from semantic-ui-react
-// add loader from semantic ui
-// add loading state
-
 const sleep = (delay: number) => {
-  return new Promise((resolve) => {
+  return new Promise<void>((resolve) => {
     setTimeout(() => {
-      resolve("true");
+      resolve();
     }, delay);
   });
 };
@@ -29,16 +25,31 @@ const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
 const requests = {
   get: <T>(url: string) => axios.get(url).then(responseBody<T>),
-  post: <T>(url: string) => axios.post(url).then(responseBody<T>),
-  put: <T>(url: string) => axios.put(url).then(responseBody<T>),
-  del: <T>(url: string) => axios.delete(url).then(responseBody<T>),
+  post: <T>(url: string, activity: Activity) =>
+    axios
+      .post(url, {
+        ...activity,
+        id: undefined,
+      })
+      .then(responseBody<T>),
+  put: <T>(url: string, activity: Activity) =>
+    axios.put(url, activity).then(responseBody<T>),
+  del: <T>(url: string, id: string) =>
+    axios
+      .delete(url, {
+        data: id,
+      })
+      .then(responseBody<T>),
 };
 
 const Activities = {
   list: () => requests.get<Activity[]>("/activities"),
-  add: () => requests.post<Activity>(""),
-  modify: () => requests.put<Activity>(""),
-  delete: () => requests.del<Activity>(""),
+  details: (id: string) => requests.get<Activity>(`/activities/${id}`),
+  create: (activity: Activity) =>
+    requests.post<Activity>("/activities", activity),
+  update: (activity: Activity) =>
+    requests.put<Activity>(`/activities/${activity.id}`, activity),
+  delete: (id: string) => requests.del<Activity>("/activities", id),
 };
 
 const Agent = {
