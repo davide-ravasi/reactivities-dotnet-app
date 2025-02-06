@@ -5,8 +5,10 @@ import { v4 as uuid } from "uuid";
 import { Activity } from "../models/activity";
 import Agent from "../api/agent";
 import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
+import { useStore } from "../stores/store";
 
 function App() {
+  const { activityStore } = useStore();
   const [activities, setActivities] = useState<Activity[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<
     Activity | undefined
@@ -71,6 +73,7 @@ function App() {
     <>
       <NavBar handleFormOpen={handleFormOpen} />
       <Container style={{ marginTop: "7em" }}>
+        <h2>{activityStore.title}</h2>
         <ActivityDashboard
           activities={activities}
           selectedActivity={selectedActivity}
